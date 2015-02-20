@@ -4,15 +4,17 @@
 from sys import argv
 
 import bottle
-from bottle import default_app, request, route, response, get
+from bottle import default_app, request, route, response, get, error
 
 bottle.debug(True)
+
 secretKey = '12345'
 
 @get('/')
+@bottle.view('index')
 def show_login():
 	seed_users()
-	return bottle.template('index', {'username':'', 'password':'', 'message':''})
+	return {'username':'', 'password':'', 'message':''}
 
 @bottle.post('/login')
 def login():
@@ -33,5 +35,9 @@ def seed_users():
 	user3 = {'username':'user3', 'password':'p3'}
 	users = [user1, user2, user3]
 	bottle.response.set_cookie('users', users, secretKey)
+
+@error(404)
+def error404(error):
+    return 'Nothing here, sorry'
 
 bottle.run(host='0.0.0.0', port=argv[1])

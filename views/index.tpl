@@ -1,6 +1,7 @@
 % rebase('master.tpl', title='Login')
 
 <form action="login" method="POST">
+  <label class="error">{{message}}</label>
   <div>
     <label>Username: </label>
     <input name="username" placeholder="username" value="{{username}}" />
@@ -10,5 +11,4 @@
     <input name="password" placeholder="password" value="{{password}}" />
   </div>    
   <button type="submit">Login</button>
-  <label class="error">{{message}}</label>
 </form>

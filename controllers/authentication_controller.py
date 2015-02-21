@@ -25,23 +25,28 @@ def login():
 			auth_repo.login(user);
 			return {'fullName':user.full_name}
 
-	print(email + ' not found.')
 	return bottle.template('login', {'loginEmail':email, 'password':'', 'loginError':'Invalid username and/or password.'})
 
 @post('/signUp')
 @view('welcome')
 def login():
-	username = bottle.request.forms.get('username')
+	fullName = bottle.request.forms.get('fullName')
+	email = bottle.request.forms.get('email')
 	password = bottle.request.forms.get('password')
+	passwordCheck = bottle.request.forms.get('passwordCheck')
 	users = user_repo.get_users()
 
 	for user in users:
-		if user.user_name == username and user.password == password:
-			auth_repo.login(user);
-			return {'username':username}
+		if user.user_name == username
+			return bottle.template('login', {'signUpFullName':fullName, 'signUpEmail':email, 'signUpPassword':password, 'signUpPasswordCheck':passwordCheck, 'signUpError':'E-mail already exists.'})
 
-	print(username + ' not found.')
-	return bottle.template('login', {'email':'', 'password':'', 'loginError':'Invalid username and/or password.'})
+	if password != passwordCheck
+		return bottle.template('login', {'signUpFullName':fullName, 'signUpEmail':email, 'signUpPassword':password, 'signUpPasswordCheck':passwordCheck, 'signUpError':'Passwords do not match.'})
+	
+	# TODO
+	# add user to list
+
+	return {'fullName':fullName}
 
 @get('/logout')
 def logout():

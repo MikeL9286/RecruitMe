@@ -1,5 +1,6 @@
 class User:
 
-    def __init__(self, user_name, password):
-        self.user_name = user_name
+    def __init__(self, email, password, full_name):
+        self.email = email
         self.password = password
+        self.full_name = full_name

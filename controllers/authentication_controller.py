@@ -22,12 +22,21 @@ def login():
 
 	for user in users:
 		if user.email == email and user.password == password:
-			auth_repo.login(user);
+			auth_repo.login(user)
 			return {'fullName':user.full_name}
 
-	return bottle.template('login', {'loginEmail':email, 'password':'', 'loginError':'Invalid username and/or password.'})
+	return bottle.template('login', {'email':email, 'password':'', 'error':'Invalid username and/or password.'})
 
-@post('/signUp')
+@get('/signup')
+@view('signUp')
+def signUp():
+	currentUser = auth_repo.get_logged_in_user()
+	if (currentUser is not None):
+		return bottle.template('welcome', {'fullName':currentUser.full_name})
+
+	return
+
+@post('/signup')
 @view('welcome')
 def login():
 	fullName = bottle.request.forms.get('fullName')
@@ -37,11 +46,11 @@ def login():
 	users = user_repo.get_users()
 
 	for user in users:
-		if user.user_name == username
-			return bottle.template('login', {'signUpFullName':fullName, 'signUpEmail':email, 'signUpPassword':password, 'signUpPasswordCheck':passwordCheck, 'signUpError':'E-mail already exists.'})
+		if user.user_name == username:
+			return bottle.template('login', {'fullName':fullName, 'email':email, 'password':password, 'passwordCheck':passwordCheck, 'error':'E-mail already exists.'})
 
-	if password != passwordCheck
-		return bottle.template('login', {'signUpFullName':fullName, 'signUpEmail':email, 'signUpPassword':password, 'signUpPasswordCheck':passwordCheck, 'signUpError':'Passwords do not match.'})
+	if password != passwordCheck:
+		return bottle.template('login', {'fullName':fullName, 'email':email, 'password':password, 'passwordCheck':passwordCheck, 'error':'Passwords do not match.'})
 	
 	# TODO
 	# add user to list

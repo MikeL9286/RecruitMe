@@ -1,9 +1,19 @@
+h1, h2, h3, h4, h5 {
+	margin: 0;
+	padding: 0;
+}
+
 body {
 	background-color: #efefef !important;
 }
 
-.form-register, .form-sign-up {
+.panel {
 	background-color: white;
+	box-shadow: #ccc 0 0 1em .1em;
+}
+
+.panel > form {
+	padding: 1em;
 }
 
 .centered {

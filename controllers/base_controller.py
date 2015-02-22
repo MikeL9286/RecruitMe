@@ -5,7 +5,17 @@ from bottle import get, view, post, error, route
 def error404(error):
 	return 'Nothing here, sorry'
 
-@route('/static/<path:path>')
-def send_static(path):
-	staticRoot = os.getcwd() + '/static'
-	return bottle.static_file(path, root=staticRoot)
+@route('/styles/<path:path>')
+def send_styles(path):
+	stylesRoot = os.getcwd() + '/styles'
+	return bottle.static_file(path, root=stylesRoot)
+
+@route('/scripts/<path:path>')
+def send_scripts(path):
+	scriptsRoot = os.getcwd() + '/scripts'
+	return bottle.static_file(path, root=scriptsRoot)
+
+@route('/images/<path:path>')
+def send_images(path):
+	imagesRoot = os.getcwd() + '/images'
+	return bottle.static_file(path, root=imagesRoot)

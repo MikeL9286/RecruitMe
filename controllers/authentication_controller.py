@@ -1,12 +1,13 @@
 import bottle, authentication_repository, user_repository, user
 from bottle import get, view, post, error, route
+from role_type import Role_Type
 
 @get('/')
 @view('login')
 def get_login():
 	currentUser = auth_repo.get_logged_in_user()
 	if currentUser is not None:
-		return bottle.template('welcome', {'fullName':currentUser.full_name})
+		return render_dashboard_by_role(currentUser)
 
 	if (user_repo.get_users() is None):
 		seed_users()
@@ -14,30 +15,30 @@ def get_login():
 	return
 
 @post('/login')
-@view('welcome')
 def login():
 	email = bottle.request.forms.get('email')
 	password = bottle.request.forms.get('password')
 	users = user_repo.get_users()
 
-	for user in users:
-		if user.email == email and user.password == password:
-			auth_repo.login(user)
-			return {'user':user}
+	# user = filter(u.email == email and u.password == password for u in users)
+	user = next((u for u in users if u.email == email and u.password == password), None)
 
-	return bottle.template('login', {'email':email, 'password':'', 'error':'Invalid username and/or password.'})
+	if user is None:
+		return bottle.template('login', {'email':email, 'password':'', 'error':'Invalid username and/or password.'})
+
+	auth_repo.login(user)
+	return render_dashboard_by_role(user)
 
 @get('/signup')
 @view('signUp')
 def get_signup():
 	currentUser = auth_repo.get_logged_in_user()
 	if (currentUser is not None):
-		return bottle.template('welcome', {'fullName':currentUser.full_name})
+		return render_dashboard_by_role(currentUser)
 
 	return
 
 @post('/signup')
-@view('welcome')
 def signup():
 	fullName = bottle.request.forms.get('fullName')
 	email = bottle.request.forms.get('email')
@@ -54,14 +55,27 @@ def signup():
 	newUser = user.User(email, password, fullName)
 	users.append(newUser)
 	user_repo.seed_users(users)
+	
 	auth_repo.login(newUser)
-
-	return {'user':newUser}
+	return render_dashboard_by_role(newUser)
 
 @get('/logout')
 def logout():
 	auth_repo.logout()
 	return bottle.redirect('/')
+
+def render_dashboard_by_role(user):
+	if user.role == Role_Type.basic:
+		return bottle.template('dashboard_basic', {'user':user})
+
+	if user.role == Role_Type.recruit:
+		return bottle.template('dashboard_recruit', {'user':user})
+
+	if user.role == Role_Type.recruiter:
+		return bottle.template('dashboard_recruiter', {'user':user})
+
+	if user.role == Role_Type.admin:
+		return bottle.template('dashboard_admin', {'user':user})	
 
 def seed_users():
 	user1 = user.User('user1@email.com', 'p1', 'User 1')

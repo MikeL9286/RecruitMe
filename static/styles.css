@@ -9,11 +9,16 @@ body {
 
 .panel {
 	background-color: white;
+	border: 1px solid #ccc;
 	box-shadow: #ccc 0 0 1em .1em;
 }
 
 .panel > form {
 	padding: 1em;
+}
+
+.panel-heading, .panel-footer {
+	text-align: center;
 }
 
 .centered {

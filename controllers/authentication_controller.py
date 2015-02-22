@@ -45,15 +45,16 @@ def login():
 	passwordCheck = bottle.request.forms.get('passwordCheck')
 	users = user_repo.get_users()
 
-	for user in users:
-		if user.user_name == username:
-			return bottle.template('login', {'fullName':fullName, 'email':email, 'password':password, 'passwordCheck':passwordCheck, 'error':'E-mail already exists.'})
+	if any(u.email == email for u in users):
+		return bottle.template('signUp', {'fullName':fullName, 'email':email, 'password':password, 'passwordCheck':passwordCheck, 'error':'E-mail already exists.'})
 
 	if password != passwordCheck:
-		return bottle.template('login', {'fullName':fullName, 'email':email, 'password':password, 'passwordCheck':passwordCheck, 'error':'Passwords do not match.'})
-	
-	# TODO
-	# add user to list
+		return bottle.template('signUp', {'fullName':fullName, 'email':email, 'password':password, 'passwordCheck':passwordCheck, 'error':'Passwords do not match.'})
+
+	newUser = user.User(email, password, fullName)
+	users.append(newUser)
+	user_repo.seed_users(users)
+	auth_repo.login(newUser)
 
 	return {'fullName':fullName}
 

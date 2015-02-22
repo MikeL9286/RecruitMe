@@ -3,7 +3,7 @@
 
 import sys
 sys.path.insert(0, './controllers')
-sys.path.append('./models')
+sys.path.append('./domain')
 sys.path.append('./repositories')
 
 import bottle, base_controller

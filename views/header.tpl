@@ -18,6 +18,8 @@
 	        <li class="active"><a href="/link1">Link1</a></li>
 	        <li><a href="/link2">Link2</a></li>
 	      </ul>
+
+	      % if defined('user'):
 	      <ul class="nav navbar-nav navbar-right">
 	        <li class="dropdown">
 	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Me <span class="caret"></span></a>
@@ -26,6 +28,8 @@
 	          </ul>
 	        </li>
 	      </ul>
+	      % end
+
 	    </div><!-- /.navbar-collapse -->
 	  </div><!-- /.container-fluid -->
 	</nav>

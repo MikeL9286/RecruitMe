@@ -5,7 +5,7 @@ from bottle import get, view, post, error, route
 @view('login')
 def get_login():
 	currentUser = auth_repo.get_logged_in_user()
-	if (currentUser is not None):
+	if currentUser is not None:
 		return bottle.template('welcome', {'fullName':currentUser.full_name})
 
 	if (user_repo.get_users() is None):
@@ -23,13 +23,13 @@ def login():
 	for user in users:
 		if user.email == email and user.password == password:
 			auth_repo.login(user)
-			return {'fullName':user.full_name}
+			return {'user':user}
 
 	return bottle.template('login', {'email':email, 'password':'', 'error':'Invalid username and/or password.'})
 
 @get('/signup')
 @view('signUp')
-def signUp():
+def get_signup():
 	currentUser = auth_repo.get_logged_in_user()
 	if (currentUser is not None):
 		return bottle.template('welcome', {'fullName':currentUser.full_name})
@@ -38,7 +38,7 @@ def signUp():
 
 @post('/signup')
 @view('welcome')
-def login():
+def signup():
 	fullName = bottle.request.forms.get('fullName')
 	email = bottle.request.forms.get('email')
 	password = bottle.request.forms.get('password')
@@ -56,7 +56,7 @@ def login():
 	user_repo.seed_users(users)
 	auth_repo.login(newUser)
 
-	return {'fullName':fullName}
+	return {'user':newUser}
 
 @get('/logout')
 def logout():

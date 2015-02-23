@@ -7,3 +7,5 @@ class User:
         self.password = password
         self.full_name = full_name
         self.role = Role_Type.basic
+        self.circle = []
+        

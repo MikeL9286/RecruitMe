@@ -4,4 +4,5 @@ class Role_Type(Enum):
 	recruit = 1
 	recruiter = 2
 	basic = 3
-	admin = 4
+	school = 4
+	admin = 5

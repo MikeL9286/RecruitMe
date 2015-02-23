@@ -20,10 +20,11 @@
 			.new commits/decommits
 			.new offers
 
-			my friends
-			
-			recruits i follow
-			schools i follow
+			my circle
+			.recruiters
+			.recruits
+			.ppl committed to my school
+			.recruits im following
 
 			groups
 
@@ -39,10 +40,3 @@
 	</div>
   </div>
 </div>
-
-
-
-
-
-
-

@@ -66,13 +66,16 @@ def logout():
 
 def render_dashboard_by_role(user):
 	if user.role == Role_Type.recruit:
-		return bottle.template('dashboard_basic', {'user':user})
+		return bottle.template('dashboard_recruit', {'user':user})
 
 	if user.role == Role_Type.recruiter:
-		return bottle.template('dashboard_basic', {'user':user})
+		return bottle.template('dashboard_recruiter', {'user':user})
+
+	if user.role == Role_Type.school:
+		return bottle.template('dashboard_school', {'user':user})
 
 	if user.role == Role_Type.admin:
-		return bottle.template('dashboard_basic', {'user':user})	
+		return bottle.template('dashboard_admin', {'user':user})	
 
 	return bottle.template('dashboard_basic', {'user':user})
 
@@ -81,10 +84,12 @@ def seed_users():
 	user2 = user.User('user2@email.com', 'p2', 'User 2')
 	user3 = user.User('user3@email.com', 'p3', 'User 3')
 	user4 = user.User('user4@email.com', 'p4', 'User 4')
+	user4 = user.User('user5@email.com', 'p5', 'User 5')
 
 	user1.role = Role_Type.basic
 	user2.role = Role_Type.recruit
 	user3.role = Role_Type.recruiter
+	user3.role = Role_Type.school
 	user4.role = Role_Type.admin
 
 	user_repo.seed_users([user1, user2, user3])

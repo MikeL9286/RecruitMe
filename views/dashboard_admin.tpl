@@ -15,34 +15,9 @@
 
 		<div>
 			<h3>TODO</h3>
-			recent activity 
-			.new highlights
-			.new commits/decommits
-			.new offers
-
-			my friends
-			
-			recruits i follow
-			schools i follow
-
-			groups
-
-			notifications
-			.messages
-
-			rankings
-			.most offers
-			.most votes (hype)
-			.most views
+			?
 		</div>
 
 	</div>
   </div>
 </div>
-
-
-
-
-
-
-

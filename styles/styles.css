@@ -20,3 +20,12 @@ body {
 .centered {
 	text-align: center;
 }
+
+.profile-container {
+	background-color: white;
+}
+
+.profile-container .profile-header {
+	text-align: center;
+	padding: 1em;
+}

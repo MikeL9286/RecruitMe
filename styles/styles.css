@@ -7,12 +7,6 @@ body {
 	background-color: #efefef !important;
 }
 
-/* override since feedback icons are mis-aligned */
-/* .has-feedback label~.form-control-feedback { */
-.has-feedback .form-control-feedback {
-	top: 34px !important;
-}
-
 .panel {
 	background-color: white;
 	border: 1px solid #ccc;

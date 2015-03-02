@@ -8,11 +8,10 @@
       % setdefault('email', '')
       % setdefault('password', '')
       % setdefault('passwordCheck', '')
-      % setdefault('error', '')
       <div class="panel">
         <h3 class="panel-heading">Sign up</h3>
         <div class="panel-body">
-          <form action="signup" method="POST">
+          <form id="signup" action="signup" method="POST">
             <div class="form-group">
               <label for="fullName" class="sr-only">Full Name</label>
               <input id="fullName" name="fullName" placeholder="Full Name" value="{{fullName}}" class="form-control" />
@@ -29,12 +28,7 @@
               <label for="passwordCheck" class="sr-only">Verify Password</label>
               <input name="passwordCheck" placeholder="Verify Password" value="{{passwordCheck}}" class="form-control" />
             </div>
-            <div class="form-group">    
-              <button type="submit" class="btn btn-default">Sign up</button>
-            </div>
-            <div class="form-group">
-              <label class="text-danger">{{error}}</label>
-            </div>
+            <button type="submit" class="btn btn-default">Sign up</button>
           </form>
         </div>
         <h5 class="panel-footer">Already signed up? <a href="/">Log in</a></h5>
@@ -47,3 +41,4 @@
 <script>
   $.backstretch("/images/splash2.jpg");
 </script>
+<script src="/scripts/signup.js"></script>

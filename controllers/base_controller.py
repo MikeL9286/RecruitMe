@@ -10,6 +10,11 @@ def send_styles(path):
 	stylesRoot = os.getcwd() + '/styles'
 	return bottle.static_file(path, root=stylesRoot)
 
+@route('/locales/<path:path>')
+def send_locales(path):
+	imagesRoot = os.getcwd() + '/locales'
+	return bottle.static_file(path, root=imagesRoot)
+
 @route('/scripts/<path:path>')
 def send_scripts(path):
 	scriptsRoot = os.getcwd() + '/scripts'

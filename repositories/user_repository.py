@@ -10,7 +10,7 @@ class User_Repository:
 	def get_users(self):
 		return bottle.request.get_cookie('users', secret=secretKey)
 
-	def update(user):
+	def update(self, user):
 		bottle.response.set_cookie('user', user, secretKey)
 		
 

@@ -1,14 +1,17 @@
-
-var updateEmail = function() {
-	return false;
-};
-
-var updatePassword = function() {
-	return false;
-};
-
-var updateName = function() {
-	return false;
-};
-
-
+$(document).ready(function() {
+	$('form#update-email').formValidation({
+		framework: 'bootstrap',
+        icon: {
+            valid: 'fa fa-check',
+            invalid: 'fa fa-remove',
+            validating: 'fa fa-spinner'
+        },
+        fields: {
+            email: {
+                validators: {
+                    notEmpty: true
+                }
+            }
+        }
+	});
+});

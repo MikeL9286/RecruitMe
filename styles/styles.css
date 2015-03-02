@@ -7,10 +7,23 @@ body {
 	background-color: #efefef !important;
 }
 
+/* override since feedback icons are mis-aligned */
+/* .has-feedback label~.form-control-feedback { */
+.has-feedback .form-control-feedback {
+	top: 34px !important;
+}
+
 .panel {
 	background-color: white;
 	border: 1px solid #ccc;
 	box-shadow: #ccc 0 0 1em .1em;
+}
+
+.panel-form {
+	padding: 1em;
+	border: 1px solid #ccc;
+	border-radius: .5em;
+	margin-bottom: 1.5em;
 }
 
 .panel-heading, .panel-footer {
@@ -28,4 +41,8 @@ body {
 .profile-container .profile-header {
 	text-align: center;
 	padding: 1em;
+}
+
+.form-description {
+	margin-bottom: .5em;
 }

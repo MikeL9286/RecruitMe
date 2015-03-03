@@ -1,11 +1,11 @@
 % rebase('master.tpl', title='Profile')
 
 <div class="container-fluid profile-container">
-	<h3 class="profile-header">Update Your Profile</h3>
+	<h3 class="container-header">Update Your Profile</h3>
 	<div class="row">
 		<div class="col-xs-6 col-xs-offset-3">
 
-			<form id="update-email" action="update-email" method="POST" class="panel-form">
+			<form id="update-email" action="update-email" method="POST" class="panel">
 		    	<div class="form-group">
 		    		<label for="email" class="text-muted">Update your e-mail</label>
 		    		<input id="email" name="email" placeholder="E-mail" value="{{user.email}}" class="form-control" />
@@ -13,7 +13,7 @@
 		    	<button type="submit" class="btn btn-default"><i class="fa fa-edit"></i> Update</button>
 	    	</form>	
 	
-	    	<form id="update-password" action="update-password" method="POST" class="panel-form">
+	    	<form id="update-password" action="update-password" method="POST" class="panel">
 	    		<label class="text-muted">Update your password</label>
 		    	<div class="form-group">
 		    		<label for="oldPassword" class="sr-only">Old Password</label>
@@ -30,7 +30,7 @@
 		    	<button type="submit" class="btn btn-default"><i class="fa fa-edit"></i> Update</button>
 	    	</form>
 
-	    	<form action="update-name" method="POST" class="panel-form">
+	    	<form action="update-name" method="POST" class="panel">
 	    		<label class="text-muted">Update Your Name</label>
 	    		<div class="form-description">
 	    			<i class="fa fa-question"></i> <small>This is the name that others will see when they view your profile.</small>

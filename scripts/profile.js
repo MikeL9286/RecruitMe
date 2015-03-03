@@ -40,6 +40,7 @@ $(document).ready(function() {
             oldPassword: {
                 validators: {
                     notEmpty: true
+                    
                 }
             },
             newPassword: {

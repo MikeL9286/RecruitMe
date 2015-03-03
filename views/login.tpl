@@ -6,7 +6,7 @@
 
       % setdefault('email', '')
       % setdefault('password', '')
-      <div class="panel">
+      <div class="panel panel-pop">
         <h3 class="panel-heading">Log in</h3>
         <div class="panel-body">
           <form id="login" action="login" method="POST">

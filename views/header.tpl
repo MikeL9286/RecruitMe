@@ -15,7 +15,8 @@
 	    <!-- Collect the nav links, forms, and other content for toggling -->
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	      <ul class="nav navbar-nav">
-	        <li class="active"><a href="/link1">Dashboard</a></li>
+	        <li class="active"><a href="/">Dashboard</a></li>
+	        <li><a href="/teams">Teams</a></li>
 	      </ul>
 
 	      % if defined('user'):

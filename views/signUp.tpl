@@ -8,7 +8,7 @@
       % setdefault('email', '')
       % setdefault('password', '')
       % setdefault('passwordCheck', '')
-      <div class="panel">
+      <div class="panel panel-pop">
         <h3 class="panel-heading">Sign up</h3>
         <div class="panel-body">
           <form id="signup" action="signup" method="POST">

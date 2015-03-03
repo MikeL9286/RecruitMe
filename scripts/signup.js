@@ -15,20 +15,35 @@ $(document).ready(function() {
             email: {
                 validators: {
                     notEmpty: true,
-                    emailAddress: true
+                    emailAddress: true,
+                    remote: {
+                        url: '/validate-email',
+                        type: 'POST',
+                        data: function(validator) {
+                            return {
+                                email: validator.getFieldElements('email').val()
+                            };
+                        },
+                        delay: 500
+                    }
                 }
             },
             password: {
                 validators: {
-                    notEmpty: true
+                    notEmpty: true,
+                    callback: {
+                        callback: function (value, validator, $field) {
+                            var password = validator.getFieldElements('newPassword').val();
+                            return validatePasswordRequirements(password);
+                        }
+                    }
                 }
             },
             passwordCheck: {
             	validators: {
             		notEmpty: true,
             		identical: {
-            			field: 'password',
-            			message: 'The passwords do not match.'
+            			field: 'password'
             		}
             	}
             }

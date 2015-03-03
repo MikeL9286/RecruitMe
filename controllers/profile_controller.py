@@ -26,8 +26,16 @@ def update_email():
 	
 	return bottle.template('profile', {'user':currentUser, 'message':'Success.'})
 
+@post('/validate-email')
+def validate_email():
+	email = bottle.request.forms.get('email')
+	users = user_repo.get_users()
+	if any(u.email == email for u in users):
+		return {'valid':False}
+	return {'valid':True}
 
-@put('/update-password')
+
+@post('/update-password')
 def update_password():
 	oldPassword = bottle.request.forms.get('oldPassword')
 	newPassword = bottle.request.forms.get('newPassword')
@@ -35,17 +43,29 @@ def update_password():
 	currentUser = auth_repo.get_logged_in_user()
 
 	if currentUser.password != oldPassword:
-		return bottle.template('profile', {'user':currentUser, 'message':'The old password is incorrect.'})
+		return bottle.template('profile', {'user':currentUser})
 
 	if newPassword != passwordCheck:
-		return bottle.template('profile', {'user':currentUser, 'message':'The passwords do not match.'})
+		return bottle.template('profile', {'user':currentUser})
+
+	if validatePasswordRequirements(newPassword):
+		return bottle.template('profile', {'user':currentUser})
 
 	currentUser.password = newPassword
 	user_repo.update(currentUser)
 
-	return bottle.template('profile', {'user':currentUser, 'message':'Success.'})
+	return bottle.template('profile', {'user':currentUser})
 
-@put('/update-name')
+def validatePasswordRequirements(password):
+     # var hasEightCharacters = password.length >= 8;
+     # var hasUpperCase = /[A-Z]/.test(password);
+     # var hasLowerCase = /[a-z]/.test(password);
+     # var hasNumbers = /\d/.test(password);
+     # var hasNonalphas = /\W/.test(password);
+     # return hasEightCharacters && hasUpperCase && hasLowerCase && hasNumbers && hasNonalphas;
+     return true
+
+@post('/update-name')
 def update_name():
 	fullName = bottle.request.forms.get('name')
 	currentUser = auth_repo.get_logged_in_user()

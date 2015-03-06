@@ -1,4 +1,4 @@
-import bottle, user, user_repository
+import bottle, user
 
 secretKey = '12345'
 

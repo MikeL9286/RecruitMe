@@ -2,6 +2,8 @@ import bottle, authentication_repository, user_repository, user
 from bottle import get, view, post, error, route
 from role_type import Role_Type
 
+import seeded_data
+
 @get('/')
 @view('login')
 def get_login():
@@ -10,7 +12,7 @@ def get_login():
 		return render_dashboard_by_role(currentUser)
 
 	if (user_repo.get_users() is None):
-		seed_users()
+		seeded_data.seed_all_data()
 
 	return
 
@@ -78,21 +80,6 @@ def render_dashboard_by_role(user):
 		return bottle.template('dashboard_admin', {'user':user})	
 
 	return bottle.template('dashboard_basic', {'user':user})
-
-def seed_users():
-	user1 = user.User('user1@email.com', 'p1', 'User 1')
-	user2 = user.User('user2@email.com', 'p2', 'User 2')
-	user3 = user.User('user3@email.com', 'p3', 'User 3')
-	user4 = user.User('user4@email.com', 'p4', 'User 4')
-	user4 = user.User('user5@email.com', 'p5', 'User 5')
-
-	user1.role = Role_Type.basic
-	user2.role = Role_Type.recruit
-	user3.role = Role_Type.recruiter
-	user3.role = Role_Type.school
-	user4.role = Role_Type.admin
-
-	user_repo.seed_users([user1, user2, user3])
 
 auth_repo = authentication_repository.Authentication_Repository()
 user_repo = user_repository.User_Repository()

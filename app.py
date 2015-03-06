@@ -5,6 +5,7 @@ import sys
 sys.path.insert(0, './controllers')
 sys.path.append('./domain')
 sys.path.append('./repositories')
+sys.path.append('.')
 
 import bottle, base_controller
 

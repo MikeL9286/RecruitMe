@@ -1,22 +1,22 @@
 import bottle, team
+from mongo import Mongo
 from munch import munchify
 
 secretKey = '12345'
 
-class Team_Repository:
+def get_teams():
+	teams = Mongo().db.teams.find()
+	return munchifyTeams(teams)
 
-	def __init__(self, database):
-		self.db = database
-		self.teams = database.teams
+def get_team(name):
+	team = Mongo().db.teams.find_one({'name':name})
+	return munchify(team)
 
-	def get_teams(self):
-		teams = bottle.request.get_cookie('teams', secret=secretKey)
-		
-		return 
+def upsert_teams(teams):
+	bottle.response.set_cookie('teams', teams, secretKey)
 
-	def get_team(self, name):
-		teams = bottle.request.get_cookie('teams', secret=secretKey)
-		return next((t for t in teams if t.name == name), None)
-
-	def upsert_teams(self, teams):
-		bottle.response.set_cookie('teams', teams, secretKey)
+def munchifyTeams(teams):
+	mappedTeams = []
+	for team in teams:
+		mappedTeams.append(munchify(team))
+	return mappedTeams

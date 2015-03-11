@@ -75,5 +75,4 @@ def update_name():
 
 	return bottle.template('profile', {'user':currentUser, 'message':'Success.'})
 
-db = pymongo.MongoClient("mongodb://localhost").recruitme
 session_repo = session_repository.Session_Repository()

@@ -8,7 +8,7 @@ def get_teams():
 	if currentUser is None:
 		return bottle.template('login')
 
-	teams = team_repo.get_teams()	
+	teams = team_repository.get_teams()
 	conferences = set(t.conference for t in teams)
 
 	teams_by_conference = []
@@ -46,6 +46,4 @@ def decommit(name):
 	user_repository.update(user)
 	bottle.redirect('/teams/' + name)
 
-db = pymongo.MongoClient("mongodb://localhost").recruitme
-team_repo = team_repository.Team_Repository(db)
 session_repo = session_repository.Session_Repository()

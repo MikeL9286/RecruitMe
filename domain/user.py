@@ -1,4 +1,4 @@
-from role_type import Role_Type
+import role_type
 
 class User:
 
@@ -6,6 +6,6 @@ class User:
         self.email = email
         self.password = password
         self.full_name = full_name
-        self.role = Role_Type.basic
+        self.role = role_type.basic
         self.circle = []
-        
+        self.committed_teams = []

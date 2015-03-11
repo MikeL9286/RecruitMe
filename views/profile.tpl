@@ -54,7 +54,7 @@
 	    		<p>Name: {{user.full_name}}</p>
 	    		<p>Email: {{user.email}}</p>
 	    		<p>Pass: {{user.password}}</p>
-	    		<p>Role: {{user.role.name}}</p>
+	    		<p>Role: {{user.role}}</p>
 	    	</div>
 	    </div>
 	</div>

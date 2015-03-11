@@ -31,3 +31,7 @@ h1, h2, h3, h4, h5 {
 .form-description {
 	margin-bottom: .5em;
 }
+
+form#commit, form#decommit {
+	margin-bottom: 1.5em;
+}

@@ -7,9 +7,12 @@ sys.path.append('./domain')
 sys.path.append('./repositories')
 sys.path.append('.')
 
+from mongo import Mongo
+Mongo().db = "mongodb://localhost" 
+
 import bottle, base_controller
-
-from sys import argv
-
 bottle.debug(True)
-bottle.run(host='0.0.0.0', port=argv[1])
+bottle.run(host='0.0.0.0', port=sys.argv[1])
+
+import seeded_data
+seeded_data.seed_all_data

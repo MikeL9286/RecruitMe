@@ -1,4 +1,4 @@
-import bottle, authentication_controller, profile_controller, team_controller, os
+import bottle, authentication_controller, profile_controller, team_controller, dashboard_controller, os
 from bottle import get, view, post, error, route
 
 @error(404)
